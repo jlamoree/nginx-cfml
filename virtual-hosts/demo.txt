@@ -1,0 +1,15 @@
+Default site is still Nginx welcome.
+
+curl http://127.0.0.1/
+
+New virtual sites
+curl -H 'Host: vhost1' http://127.0.0.1/
+curl -H 'Host: vhost2' http://127.0.0.1/
+
+How about changing default?
+listen 80 default_server;
+
+What if there are two defaults?
+Error message: "nginx: [emerg] a duplicate default server for 0.0.0.0:80 in vhost.conf"
+
+
