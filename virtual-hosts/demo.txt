@@ -12,4 +12,17 @@ listen 80 default_server;
 What if there are two defaults?
 Error message: "nginx: [emerg] a duplicate default server for 0.0.0.0:80 in vhost.conf"
 
+Use wildcards for hostnames:
+# matches all subdomains
+server_name *.domain.tld;
+
+# matches all top-level domains
+server_name www.domain.*
+
+# matches *.domain.tld as well as domain.tld
+server_name .domain.tld 
+
+Use regular expressions for hostnames:
+server_name ~^www(\d+).domain\.(com)$;
+add_header X-Node $1;
 
