@@ -2,7 +2,7 @@
 
 NGINX_PROJECT=
 NGINX_CONF=${1:-_}
-NGINX_BIN=/opt/local/sbin/nginx
+NGINX_BIN=/usr/sbin/nginx
 NGINX_PREFIX=
 
 function usage {
