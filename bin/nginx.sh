@@ -40,10 +40,12 @@ if [ $? != 0 ]; then
 fi
 
 if [ -f "${NGINX_PREFIX}logs/nginx.pid" ]; then
-  NGINX_PID=`cat "${NGINX_PREFIX}logs/nginx.pid"`
-  sudo kill -s 0 $NGINX_PID 2>&1 > /dev/null
-  if [ $? == 0 ]; then
-    sudo $NGINX_BIN -p $NGINX_PREFIX -c $NGINX_CONF -s stop
+  NGINX_PID=`head -n 1 "${NGINX_PREFIX}logs/nginx.pid"`
+  if [ "_$NGINX_PID" != "_" ]; then
+    sudo kill -s 0 $NGINX_PID 2>&1 > /dev/null
+    if [ $? == 0 ]; then
+      sudo $NGINX_BIN -p $NGINX_PREFIX -c $NGINX_CONF -s stop
+    fi
   fi
 fi
 sudo $NGINX_BIN -p $NGINX_PREFIX -c $NGINX_CONF
